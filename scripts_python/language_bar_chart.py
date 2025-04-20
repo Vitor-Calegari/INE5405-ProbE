@@ -1,7 +1,6 @@
 import plotly.graph_objects as go
 import pandas as pd
 import os
-import sys
 
 def main():
     # Muda o diretório atual para o do script
@@ -17,8 +16,9 @@ def main():
     labels = language_counts.index.tolist()
     values = language_counts.tolist()
     
-    # Cria gráfico de donout
-    fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
+    # Cria gráfico de barras
+    fig = go.Figure(data=[go.Bar(x=labels, y=values)])
+    fig.update_layout(title='Contagem de Idiomas', xaxis_title='Idioma', yaxis_title='Contagem')
     fig.show()
 
 if (__name__ == '__main__'):
