@@ -1,7 +1,6 @@
 import plotly.graph_objects as go
 import pandas as pd
 import os
-import sys
 
 def main():
     # Muda o diretório atual para o do script
