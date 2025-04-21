@@ -26,9 +26,15 @@ def main():
     # Cria a figura com eixo y secundário para a linha cumulativa
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     
-    # Barra para as frequências
+    # Barra para as frequências com valores exibidos em cada barra
     fig.add_trace(
-        go.Bar(x=bin_centers, y=counts, name='Frequência'),
+        go.Bar(
+            x=bin_centers, 
+            y=counts, 
+            name='Frequência',
+            text=counts,
+            textposition='auto'
+        ),
         secondary_y=False,
     )
     

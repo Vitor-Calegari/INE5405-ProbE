@@ -16,8 +16,8 @@ def main():
     labels = language_counts.index.tolist()
     values = language_counts.tolist()
     
-    # Cria gráfico de barras
-    fig = go.Figure(data=[go.Bar(x=labels, y=values)])
+    # Cria gráfico de barras com o número em cima de cada barra
+    fig = go.Figure(data=[go.Bar(x=labels, y=values, text=values, textposition='outside')])
     fig.update_layout(title='Contagem de Idiomas', xaxis_title='Idioma', yaxis_title='Contagem')
     fig.show()
 
