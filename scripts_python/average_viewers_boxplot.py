@@ -42,14 +42,16 @@ def main():
     
     # Boxplot sem os outliers extremos
     fig.add_trace(go.Box(
+        
         y=filtered_average_viewers,
         name='Average viewers (sem outliers)',
         boxpoints=False,
         hovertext=filtered_data['Channel'],
         hovertemplate='Channel: %{hovertext}<br>Average viewers: %{y}<extra></extra>'
-    ), row=1, col=2)
+    ), row=1, col=2,)
     
     # Atualiza o layout e mostra a figura
+    fig.update_layout(yaxis_range=[-4,4])
     fig.update_layout(title='Average viewers', showlegend=False)
     fig.update_yaxes(title_text='Average viewers', row=1, col=1)
     fig.update_yaxes(title_text='Average viewers', row=1, col=2)
