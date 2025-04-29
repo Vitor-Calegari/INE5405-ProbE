@@ -54,6 +54,6 @@ def main():
     fig.update_yaxes(title_text='Average viewers', row=1, col=1)
     fig.update_yaxes(title_text='Average viewers', row=1, col=2)
     fig.show()
-
+    
 if (__name__ == '__main__'):
     main()
