@@ -14,16 +14,6 @@ def main():
     # Seleciona a coluna "Average viewers"
     average_viewers = twitchdata['Average viewers']
     
-    # Remove os outliers utilizando 1.5*IQR
-    q1 = average_viewers.quantile(0.25)
-    q3 = average_viewers.quantile(0.75)
-    iqr = q3 - q1
-    lower_bound = q1 - 1.5 * iqr
-    upper_bound = q3 + 1.5 * iqr
-    filtered_data = twitchdata[(twitchdata['Average viewers'] >= lower_bound) &
-                               (twitchdata['Average viewers'] <= upper_bound)]
-    filtered_average_viewers = filtered_data['Average viewers']
-    
     # Cria subplots para os dois boxplots
     fig = make_subplots(rows=1, cols=2,
                         subplot_titles=[
@@ -42,10 +32,10 @@ def main():
     
     # Boxplot sem os outliers extremos
     fig.add_trace(go.Box(
-        y=filtered_average_viewers,
+        y=average_viewers,
         name='Average viewers (sem outliers)',
         boxpoints=False,
-        hovertext=filtered_data['Channel'],
+        hovertext=twitchdata['Channel'],
         hovertemplate='Channel: %{hovertext}<br>Average viewers: %{y}<extra></extra>'
     ), row=1, col=2)
     
@@ -53,6 +43,7 @@ def main():
     fig.update_layout(title='Average viewers', showlegend=False)
     fig.update_yaxes(title_text='Average viewers', row=1, col=1)
     fig.update_yaxes(title_text='Average viewers', row=1, col=2)
+    fig.update_yaxes(range=[0, 30000], row=1, col=2)
     fig.show()
 
 if (__name__ == '__main__'):
