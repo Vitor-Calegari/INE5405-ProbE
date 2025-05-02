@@ -14,18 +14,20 @@ def main():
     # Seleciona a coluna de Stream time (minutes)
     stream_time = twitchdata['Stream time(minutes)']
     
-    # Calcula o histograma com 20 bins
-    counts, bin_edges = np.histogram(stream_time, bins=20)
+    # Cria o gráfico de barras com os valores acima das barras
+    min_val = stream_time.min()
+    max_val = stream_time.max()
+    bin_size = (max_val - min_val) / 8
     
-    # Calcula o valor central de cada bin (para posicionar as barras)
-    bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
-    
-    # Cria um gráfico de barras com o número em cima de cada barra
-    fig = go.Figure(data=[go.Bar(
-        x=bin_centers,
-        y=counts,
-        text=counts,
-        textposition='auto'
+    fig = go.Figure(data=[go.Histogram(
+        x=stream_time,
+        xbins=dict(
+            start=min_val,
+            end=max_val,
+            size=bin_size
+        ),
+        texttemplate="%{y}",
+        textposition='outside'
     )])
     
     fig.update_layout(
