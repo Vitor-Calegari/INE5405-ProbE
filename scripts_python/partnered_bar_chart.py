@@ -19,8 +19,9 @@ def main():
     labels = ['Parceiro' if l else 'Não parceiro' for l in labels]
     
     # Cria gráfico de barras
-    fig = go.Figure(data=[go.Bar(x=labels, y=values)])
+    fig = go.Figure(data=[go.Bar(x=labels, y=values, text=values, textposition='outside')])
     
+    fig.update_layout(title='Distribuição de transmissores por parceria')
     fig.show()
 
 if (__name__ == '__main__'):
