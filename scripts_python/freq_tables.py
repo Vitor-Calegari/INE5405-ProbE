@@ -65,7 +65,21 @@ style.map("Custom.Treeview", background=[('selected', '#ececec')])
 
 # Processar variáveis discretas
 for coluna in discretas:
-    df["faixa"] = pd.cut(df[coluna], bins=8)
+    min_val = df[coluna].min()
+    max_val = df[coluna].max()
+
+    if min_val < 0:
+        print(f"Aviso: valor negativo inesperado em {coluna}: {min_val}")
+        min_val = 0
+
+    min_val = df[coluna].min()
+    max_val = df[coluna].max()
+    step = (max_val - min_val) / 8
+    bins = [min_val + i * step for i in range(9)]
+    bins[-1] += 1  # garantir que o último valor caiba
+
+    df["faixa"] = pd.cut(df[coluna], bins=bins, include_lowest=True)
+
     frequencia = df["faixa"].value_counts().sort_index()
     porcentagem = df["faixa"].value_counts(normalize=True).sort_index() * 100
 
@@ -76,6 +90,7 @@ for coluna in discretas:
     })
 
     criar_aba(coluna, tabela)
+
 
 # Processar variáveis nominais
 for coluna in nominais:
