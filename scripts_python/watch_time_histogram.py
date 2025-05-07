@@ -30,6 +30,7 @@ def main():
         textposition='outside'
     )])
     fig.update_layout(
+        title='Histograma do Tempo assistido',
         xaxis_title='Tempo assistido (Minutos)',
         yaxis_title='Frequência'
     )

@@ -1,6 +1,11 @@
 import pandas as pd
 import tkinter as tk
 from tkinter import ttk
+import os
+
+# Muda o diretório atual para o do script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(script_dir)
 
 # Carregar dados
 df = pd.read_csv("twitchdata-update.csv")

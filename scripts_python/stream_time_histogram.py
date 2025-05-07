@@ -1,7 +1,6 @@
 import plotly.graph_objects as go
 import pandas as pd
 import os
-import numpy as np
 
 def main():
     # Muda o diretório atual para o do script
@@ -31,7 +30,8 @@ def main():
     )])
     
     fig.update_layout(
-        xaxis_title='Tempo de Streaming (Minutos)',
+        title='Histograma do Tempo de transmissão',
+        xaxis_title='Tempo de transmissão (Minutos)',
         yaxis_title='Frequência'
     )
     fig.show()
