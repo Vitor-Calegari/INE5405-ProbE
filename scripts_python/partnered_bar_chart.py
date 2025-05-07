@@ -16,9 +16,10 @@ def main():
     labels = language_counts.index.tolist()
     values = language_counts.tolist()
     
-    # Cria gráfico de donout
     labels = ['Parceiro' if l else 'Não parceiro' for l in labels]
-    fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
+    
+    # Cria gráfico de barras
+    fig = go.Figure(data=[go.Bar(x=labels, y=values)])
     
     fig.show()
 
