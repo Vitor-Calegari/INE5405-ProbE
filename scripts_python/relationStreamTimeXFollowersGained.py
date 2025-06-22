@@ -33,6 +33,11 @@ def relationStreamTimeXFollowersGained(twitchdata):
     plt.xlim(0, stream_hours.quantile(0.99))
     plt.ylim(0, followers_gained.quantile(0.99))
 
+
+    plt.savefig("/Users/antonio/INE5405-ProbE/scripts_python/graficos", dpi=300)  # dpi=300 deixa em alta resolução
+
+    
+
     plt.show()
 
 

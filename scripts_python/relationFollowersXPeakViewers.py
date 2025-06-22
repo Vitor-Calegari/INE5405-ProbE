@@ -33,6 +33,11 @@ def relationFollowersXPeakViewers(twitchdata):
 
     plt.grid(True, linestyle='--', alpha=0.6)
     plt.tight_layout()
+
+
+    plt.savefig("/Users/antonio/INE5405-ProbE/scripts_python/graficos", dpi=300)  # dpi=300 deixa em alta resolução
+
+    
     plt.show()
 
 def main():

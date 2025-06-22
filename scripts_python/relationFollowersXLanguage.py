@@ -37,6 +37,10 @@ def relationFollowersXLanguage(twitchdata):
         ticker.FuncFormatter(lambda x, _: f'{x / 1_000_000:.1f}M'))
 
     plt.tight_layout()
+
+    plt.savefig("/Users/antonio/INE5405-ProbE/scripts_python/graficos", dpi=300)  # dpi=300 deixa em alta resolução
+
+    
     plt.show()
 
 
