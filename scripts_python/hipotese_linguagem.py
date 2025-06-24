@@ -37,5 +37,41 @@ def main():
     else:
         print("Resultado: Não há evidência suficiente para afirmar que a proporção de transmissões com língua principal português é maior do que com a língua principal espanhol.")
 
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from scipy.stats import norm
+
+    # Estatística Z do teste
+    z_obs = 0.6372
+    p_val = 0.262
+
+    # Intervalo do eixo x
+    x = np.linspace(-4, 4, 1000)
+    y = norm.pdf(x)
+
+    # Plot da curva normal padrão
+    plt.figure(figsize=(10, 6))
+    plt.plot(x, y, label="Distribuição Normal Padrão", color='black')
+
+    # Área do p-valor (região à direita de z_obs)
+    x_fill = np.linspace(z_obs, 4, 500)
+    plt.fill_between(x_fill, norm.pdf(x_fill), color='red', alpha=0.4, label=f"p-valor ≈ {p_val:.3f}")
+
+    # Linha vertical no z observado
+    plt.axvline(z_obs, color='red', linestyle='--', label=f"Z observado = {z_obs:.3f}")
+
+    # Linha vertical no valor crítico para α = 0.05 (z crítico unilateral)
+    z_crit = norm.ppf(1 - 0.05)
+    plt.axvline(z_crit, color='blue', linestyle='--', label=f"Z crítico (α=0.05) ≈ {z_crit:.2f}")
+
+    # Estética do gráfico
+    plt.title("Distribuição Normal Padrão")
+    plt.xlabel("Z")
+    plt.ylabel("Densidade de Probabilidade")
+    plt.legend()
+    
+    plt.grid(True)
+    plt.show()
+
 if (__name__ == '__main__'):
     main()
